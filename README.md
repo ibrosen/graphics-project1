@@ -1,6 +1,5 @@
 # Graphics Project 1
-Due 4pm, Monday 4th September.
-10% of the marks for this subject.
+Due 4pm, Monday 4th September. 10% of the marks for this subject.
 
 ## Task
 In this project, you will use fractals to automatically generate a 3D landscape, and enable a user to
