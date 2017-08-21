@@ -2,7 +2,7 @@
 Due 4pm, Monday 4th September
 
 ## Modelling of fractal landscape (3 marks):
-You must automatically generate a randomly seeded fractal landscape at each invocation of the program, via a correct implementation of the diamond-square algorithm.
+- You must automatically generate a randomly seeded fractal landscape at each invocation of the program, via a correct implementation of the diamond-square algorithm.
 You must use Unity’s architecture appropriately to generate and render the landscape.
 There must be no notable problems or artifacts with the polygonal representation.
 
