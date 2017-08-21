@@ -15,7 +15,7 @@ There is information on the diamond-square algorithm on Lecture 5 and on LMS, an
 ## Specifications and marking citeria
 A project that satisfies all of the criteria listed below will receive 10 marks.
 ### Modelling of fractal landscape (3 marks):
-- [ ] You must automatically generate a randomly seeded fractal landscape at each invocation of the program, via a correct implementation of the diamond-square algorithm.
+- [x] You must automatically generate a randomly seeded fractal landscape at each invocation of the program, via a correct implementation of the diamond-square algorithm.
 - [ ] You must use Unity’s architecture appropriately to generate and render the landscape.
 - [ ] There must be no notable problems or artifacts with the polygonal representation.
 
