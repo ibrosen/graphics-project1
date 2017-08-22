@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +12,17 @@ public class DiamondSquareTerrain : MonoBehaviour
     public float iterRate;
 
     Vector3[] mVerts;
+    Color[] mColours;
     int mVertCount;
     // Use this for initialization
     void Start()
     {
+
         //GenerateTest();
+        //MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
+        //renderer.material.shader = Shader.Find("Custom/BasicShader");
         GenerateTerrain();
+
     }
 
     void GenerateTest()
@@ -75,6 +80,7 @@ public class DiamondSquareTerrain : MonoBehaviour
         //CHANGE MVERTS TO BE 2D ARRAY
         mVertCount = (mDivisions + 1) * (mDivisions + 1);
         mVerts = new Vector3[mVertCount];
+        mColours = new Color[mVertCount];
         Vector2[] UVs = new Vector2[mVertCount];
         //mdiv*mdiv is the number of faces, 2 triangles to a face, 3 ints for a triangle
         int[] tris = new int[2 * mDivisions * mDivisions * 3];
@@ -142,10 +148,21 @@ public class DiamondSquareTerrain : MonoBehaviour
             //mHeight *= iterRate;
             mHeight *= iterRate;
         }
+        //setting the colours of the vertices;
+        for(int i = 0; i < mVertCount; i++)
+        {
+            //based on the height of the vertex, give it a certain colour
+            if (mVerts[i].y > 0)
+                mColours[i] = Color.black;
+            else
+                mColours[i] = Color.white;
+        }
+
 
         mesh.vertices = mVerts;
         mesh.uv = UVs;
         mesh.triangles = tris;
+        mesh.colors = mColours;
 
         mesh.RecalculateBounds();
         mesh.RecalculateNormals();
