@@ -1,6 +1,6 @@
 # Graphics Project 1
 Due 4pm, Monday 4th September. 10% of the marks for this subject.
-UPDATE
+
 ## Task
 In this project, you will use fractals to automatically generate a 3D landscape, and enable a user to
 navigate around the landscape in a ‘flight simulator’ style.
