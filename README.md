@@ -19,7 +19,7 @@ A project that satisfies all of the criteria listed below will receive 10 marks.
 - [ ] There must be no notable problems or artifacts with the polygonal representation.
 
 ### Camera motion (3 marks):
-- [ ] Your camera controls should be implemented in a ‘flight simulator’ style, with the following specifications:
+- [x] Your camera controls should be implemented in a ‘flight simulator’ style, with the following specifications:
     * Moving the mouse should control the relative pitch and yaw of the camera
     * The ’w’ and ’s’ keys should cause the camera to move forwards and backwards respectively, relative the camera’s current orientation
     * The ’a’ and ’d’ keys should cause the camera to move left and right respectively, relative to the camera’s current orientation
