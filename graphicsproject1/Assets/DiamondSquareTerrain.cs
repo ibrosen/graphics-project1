@@ -5,15 +5,14 @@ using UnityEngine;
 public class DiamondSquareTerrain : MonoBehaviour
 {
 
-	public int mDivisions;
-	public float mSize;
-	public float mHeight;
-	//BETWEEN 0 AND 1
-	public float iterRate;
+	public int mDivisions;				// Must be powers of 2. Default & max is 128.
+	public static float mSize=10000;		// 100 to 10,000. Default is 10,000.
+	public float iterRate;				// Between 0 and 1. Default is 0.5.
 
 	Vector3[] mVerts;
 	Color[] mColours;
 	int mVertCount;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -27,6 +26,9 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 	void GenerateTest()
 	{
+
+		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
+
 		mVertCount = (mDivisions + 1) * (mDivisions + 1);
 		mVerts = new Vector3[mVertCount];
 		Vector2[] uv = new Vector2[mVertCount];
@@ -62,9 +64,6 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 				}
 
-
-
-
 			}
 		}
 
@@ -75,8 +74,13 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 	}
+
+
 	void GenerateTerrain()
 	{
+
+		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
+
 		//CHANGE MVERTS TO BE 2D ARRAY
 		mVertCount = (mDivisions + 1) * (mDivisions + 1);
 		mVerts = new Vector3[mVertCount];
