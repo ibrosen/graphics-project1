@@ -7,6 +7,23 @@ public class CameraMotion : MonoBehaviour {
 	public float moveSpeed; // Set to 10
 	public float rollSpeed; // Set to 50
 
+	// Use this for initialization
+	void Start()
+	{
+
+		// Set initial location of camera
+
+		// Get terrain variables
+		float terrainHeight = DiamondSquareTerrain.mSize / 4.0f;
+		Vector3 terrainPosition = GameObject.Find("Terrain").transform.localPosition;
+
+//		this.transform.localPosition = terrainPosition + new Vector3(0.0f, 2.0f, 0.0f);
+		this.transform.localPosition = Vector3.zero + new Vector3(0.0f, terrainHeight, 0.0f);
+
+//		GameObject.Find("Terrain").
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -60,6 +77,12 @@ public class CameraMotion : MonoBehaviour {
 			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.forward);
 
 		}
+
+		/* TO DO:
+			- function to start camera a few units above the ground/sea level in the
+			  centre of the terrain with correct angle
+			- stop camera from going through terrain
+		*/
 
 	}
 }
