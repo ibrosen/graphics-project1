@@ -54,6 +54,8 @@
      <Compile Include="Assets\CameraMotion.cs" />
      <Compile Include="Assets\DiamondSquareTerrain.cs" />
      <Compile Include="Assets\MeshGenerator.cs" />
+     <Compile Include="Assets\PointLight.cs" />
+     <Compile Include="Assets\SunMove.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
