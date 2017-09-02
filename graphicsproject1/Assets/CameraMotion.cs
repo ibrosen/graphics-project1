@@ -14,11 +14,11 @@ public class CameraMotion : MonoBehaviour {
 		// Set initial location of camera
 
 		// Get terrain variables
-		float terrainHeight = DiamondSquareTerrain.mSize / 4.0f;
-		Vector3 terrainPosition = GameObject.Find("Terrain").transform.localPosition;
-
-//		this.transform.localPosition = terrainPosition + new Vector3(0.0f, 2.0f, 0.0f);
-		this.transform.localPosition = Vector3.zero + new Vector3(0.0f, terrainHeight, 0.0f);
+//		float terrainHeight = DiamondSquareTerrain.mSize / 4.0f;
+//		Vector3 terrainPosition = GameObject.Find("Terrain").transform.localPosition;
+//
+////		this.transform.localPosition = terrainPosition + new Vector3(0.0f, 2.0f, 0.0f);
+//		this.transform.localPosition = Vector3.zero + new Vector3(0.0f, terrainHeight, 0.0f);
 
 //		GameObject.Find("Terrain").
 
