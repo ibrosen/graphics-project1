@@ -5,9 +5,10 @@ using UnityEngine;
 public class DiamondSquareTerrain : MonoBehaviour
 {
 
-	public int mDivisions;				// Must be powers of 2. Default & max is 128.
-	public static float mSize=10000;		// 100 to 10,000. Default is 10,000.
-	public float iterRate;				// Between 0 and 1. Default is 0.5.
+	public int mDivisions;		// Must be powers of 2. Default & max is 128.
+	public float mSize;			// 100 to 10,000. Default is 10,000.
+	public float iterRate;		// Between 0 and 1. Default is 0.5.
+	public PointLight pointLight;       //Light source, here will mimick the sun
 
 	Vector3[] mVerts;
 	Color[] mColours;
@@ -22,6 +23,17 @@ public class DiamondSquareTerrain : MonoBehaviour
 		//renderer.material.shader = Shader.Find("Custom/BasicShader");
 		GenerateTerrain();
 
+	}
+
+	void Update()
+	{
+
+		// Get renderer component (in order to pass params to shader)
+		MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
+
+		// Pass updated light positions to shader
+		renderer.material.SetColor("_PointLightColor", this.pointLight.color);
+		renderer.material.SetVector("_PointLightPosition", this.pointLight.GetWorldPosition());
 	}
 
 	void GenerateTest()
@@ -166,11 +178,12 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mesh.vertices = mVerts;
 		mesh.uv = UVs;
 		mesh.triangles = tris;
-		mesh.colors = mColours;
+		//mesh.colors = mColours;
 
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 	}
+
 	void DiamondSquare(int row, int col, int size, float offset)
 	{
 		int halfSize = (int)(size * 0.5f);
@@ -185,6 +198,5 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mVerts[midpoint + halfSize].y = (mVerts[topLeft + size].y + mVerts[botLeft + size].y + mVerts[midpoint].y) / 3 + Random.Range(-offset, offset);
 		mVerts[botLeft + halfSize].y = (mVerts[botLeft].y + mVerts[botLeft + size].y + mVerts[midpoint].y) / 3 + Random.Range(-offset, offset);
 	}
-
 
 }
