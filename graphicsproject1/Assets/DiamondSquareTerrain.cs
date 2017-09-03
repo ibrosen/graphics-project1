@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DiamondSquareTerrain : MonoBehaviour
 {
-	public GameObject camera;
+	public GameObject maincamera;
 	public int mDivisions;				// Must be powers of 2. Default & max is 128.
-	public static float mSize=1000;					// 100 to 10,000. Default is 10,000.
+	public float mSize;					// 100 to 10,000. Default is 1,000.
 	public float iterRate;				// Between 0 and 1. Default is 0.5.
 	public PointLight pointLight;       //Light source, here will mimick the sun
-	public static float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
 
 	Vector3[] mVerts;
 	Color[] mColours;
 	int mVertCount;
+
 
 	// Use this for initialization
 	void Start()
@@ -24,6 +24,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		SetCameraPosition();
 
 	}
+
 
 	void Update()
 	{
@@ -36,24 +37,24 @@ public class DiamondSquareTerrain : MonoBehaviour
 		renderer.material.SetVector("_PointLightPosition", this.pointLight.GetWorldPosition());
 	}
 
+
 	public void SetCameraPosition()
 	{
-		
-		// Find highest point in terrain
-		float peak = 0.0f;
-		foreach (Vector3 vector3 in mVerts) {
-			if (vector3.y > peak)
-				peak = vector3.y;
-		}
 
-		camera.transform.localPosition = new Vector3(0.0f, peak, 0.0f);
+		// Get the centre vector of the terrain (0, y, 0)
+		int centreVertIndex = mVertCount / 2;
+		Vector3 centreVert = mVerts[centreVertIndex];
 
-		Debug.Log(peak);
+		// Set camera position to slightly above the ground the in centre of the terrain
+		maincamera.transform.localPosition = new Vector3(0.0f, centreVert.y + 10.0f, 0.0f);
 
 	}
 
+
 	public void GenerateTerrain()
 	{
+
+		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
 
 		//CHANGE MVERTS TO BE 2D ARRAY
 		mVertCount = (mDivisions + 1) * (mDivisions + 1);
@@ -144,6 +145,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 	}
+
 
 	void DiamondSquare(int row, int col, int size, float offset)
 	{

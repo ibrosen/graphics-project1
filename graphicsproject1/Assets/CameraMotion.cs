@@ -3,42 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMotion : MonoBehaviour {
-
+	
 	public float moveSpeed; // Set to 10
 	public float rollSpeed; // Set to 50
 
-	// Use this for initialization
-	void Start()
-	{
-
-	}
 
 	// Update is called once per frame
 	void Update () {
-
-		// CHECK FOR COLLISIONS
-
-		// MOUSE MOVEMENTS (pitch, yaw)
-
-		// Move camera pitch up
-		if (Input.GetAxis("Mouse Y") > 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.right);
-
-		// Move camera pitch down
-		} else if (Input.GetAxis("Mouse Y") < 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.right);
 		
-		}
-
-		// Move camera yaw right
-		if (Input.GetAxis("Mouse X") > 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.up);
-
-		// Move camera yaw left
-		} else if (Input.GetAxis("Mouse X") < 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.up);
-
-		}
+		Vector3 pos;
+		DiamondSquareTerrain terrain = GameObject.Find("Terrain").GetComponent<DiamondSquareTerrain>();
+		float boundary = terrain.mSize / 2.0f;
 
 
 		// KEY MOVEMENTS (forwards, backwards, right, left, roll)
@@ -47,17 +22,38 @@ public class CameraMotion : MonoBehaviour {
 		if (Input.GetKey(KeyCode.W)) {
 			this.transform.localPosition += this.transform.forward * Time.deltaTime * moveSpeed;
 
+			// Restrict movement to boundaries
+			pos = this.transform.position;
+			pos.z = Mathf.Clamp(pos.z, -boundary, boundary);
+			this.transform.position = pos;
+
+
 		// Move camera backwards
 		} else if (Input.GetKey(KeyCode.S)) {
 			this.transform.localPosition -= this.transform.forward * Time.deltaTime * moveSpeed;
+
+			// Restrict movement to boundaries
+			pos = this.transform.position;
+			pos.z = Mathf.Clamp(pos.z, -boundary, boundary);
+			this.transform.position = pos;
 		
 		// Move camera right
 		} else if (Input.GetKey(KeyCode.D)) {
 			this.transform.localPosition += this.transform.right * Time.deltaTime * moveSpeed;
 
+			// Restrict movement to boundaries
+			pos = this.transform.position;
+			pos.x = Mathf.Clamp(pos.x, -boundary, boundary);
+			this.transform.position = pos;
+
 		// Move camera left
 		} else if (Input.GetKey(KeyCode.A)) {
 			this.transform.localPosition -= this.transform.right * Time.deltaTime * moveSpeed;
+
+			// Restrict movement to boundaries
+			pos = this.transform.position;
+			pos.x = Mathf.Clamp(pos.x, -boundary, boundary);
+			this.transform.position = pos;
 		
 		// Roll camera clockwise
 		} else if (Input.GetKey(KeyCode.E)) {
@@ -69,11 +65,27 @@ public class CameraMotion : MonoBehaviour {
 
 		}
 
-		/* TO DO:
-			- function to start camera a few units above the ground/sea level in the
-			  centre of the terrain with correct angle
-			- stop camera from going through terrain
-		*/
+		 // MOUSE MOVEMENTS (pitch, yaw)
+
+				// Move camera pitch up
+				if (Input.GetAxis("Mouse Y") > 0) {
+					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.right);
+		
+				// Move camera pitch down
+				} else if (Input.GetAxis("Mouse Y") < 0) {
+					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.right);
+				
+				}
+		
+//				// Move camera yaw right
+//				if (Input.GetAxis("Mouse X") > 0) {
+//					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.up);
+//		
+//				// Move camera yaw left
+//				} else if (Input.GetAxis("Mouse X") < 0) {
+//					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.up);
+//		
+//				}
 
 	}
 

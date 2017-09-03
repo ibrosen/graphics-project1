@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148bb866e9fcf4785ba490e480a73f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 1342038983}
   moveSpeed: 100
   rollSpeed: 50
 --- !u!81 &1060216700
@@ -273,8 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978bcf5feb7d1434d8416df8455689fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1060216698}
+  maincamera: {fileID: 1060216698}
   mDivisions: 128
+  mSize: 1000
   iterRate: 0.5
   pointLight: {fileID: 1504636302}
 --- !u!23 &1342038985

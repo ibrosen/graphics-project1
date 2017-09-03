@@ -25,7 +25,7 @@ A project that satisfies all of the criteria listed below will receive 10 marks.
     * The ’a’ and ’d’ keys should cause the camera to move left and right respectively, relative to the camera’s current orientation
     * The ’q’ and ’e’ keys should control the roll of the camera
 - [ ] You must allow the user to move anywhere in the world (including up into the sky), and prohibit the user from moving “underground” or outside the bounds of the landscape.
-- [ ] The camera must not become ‘stuck’ upon nearing or impacting the terrain, i.e. reversing and continuing to move must always be possible.
+- [x] The camera must not become ‘stuck’ upon nearing or impacting the terrain, i.e. reversing and continuing to move must always be possible.
 - [ ] You must utilise perspective projection, and choose a suitable default perspective, so that the landscape is clearly visible from the start.
 
 ### Surface properties (4 marks):
