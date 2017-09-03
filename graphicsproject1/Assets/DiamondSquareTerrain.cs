@@ -5,9 +5,9 @@ using UnityEngine;
 public class DiamondSquareTerrain : MonoBehaviour
 {
 	
-	public int numDiv = 128;				// Must be powers of 2. Default & max is 128.
-	public float mSize = 10000.0f;					// 100 to 10,000. Default is 10,000.
-	public float iterRate = 0.5f;				// Between 0 and 1. Default is 0.5.
+	public int numDiv = 128;			// Must be powers of 2. Default & max is 128.
+	public float mSize = 10000.0f;		// 100 to 10,000. Default is 10,000.
+	public float iterRate = 0.5f;		// Between 0 and 1. Default is 0.5.
 	public PointLight pointLight;       //Light source, here will mimick the sun
 
 	Vector3[] vertices;
@@ -42,7 +42,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 	{
 
 		// Set camera position to slightly above the ground the in centre of the terrain
-		GameObject.Find("Camera").transform.localPosition = new Vector3(-mSize/2.0f, max, -mSize/2.0f);
+		GameObject.Find("Camera").transform.localPosition = new Vector3(-mSize/2.0f, max + 50.0f, -mSize/2.0f);
 
 	}
 
@@ -69,7 +69,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		MeshCollider collide = new MeshCollider();
 		collide = GetComponent<MeshCollider>();
 
-		int triOffset = 0;
+		int offset = 0;
 
 		for (int i = 0; i <= numDiv; i++)
 		{
@@ -83,15 +83,15 @@ public class DiamondSquareTerrain : MonoBehaviour
 					int topLeft = i * (numDiv + 1) + j;
 					int botLeft = (i + 1) * (numDiv + 1) + j;
 
-					tris[triOffset] = topLeft;
-					tris[triOffset + 1] = topLeft + 1;
-					tris[triOffset + 2] = botLeft + 1;
+					tris[offset] = topLeft;
+					tris[offset + 1] = topLeft + 1;
+					tris[offset + 2] = botLeft + 1;
 
-					tris[triOffset + 3] = topLeft;
-					tris[triOffset + 4] = botLeft + 1;
-					tris[triOffset + 5] = botLeft;
+					tris[offset + 3] = topLeft;
+					tris[offset + 4] = botLeft + 1;
+					tris[offset + 5] = botLeft;
 
-					triOffset += 6;
+					offset += 6;
 
 				}
 			}
@@ -122,9 +122,9 @@ public class DiamondSquareTerrain : MonoBehaviour
 			}
 			numSquares *= 2;
 			squareSize /= 2;
-			//can play around with this
 			mHeight *= iterRate;
 		}
+
 
 		// CREATE COLOURS
 

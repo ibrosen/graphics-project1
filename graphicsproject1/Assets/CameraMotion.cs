@@ -65,7 +65,13 @@ public class CameraMotion : MonoBehaviour {
 
 		}
 	
+		// Prevent spinning and movement after collision
+		Rigidbody rb = GetComponent<Rigidbody>();
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+
 	}
+
 
 	void RestrictToBoundaries() {
 
@@ -79,17 +85,6 @@ public class CameraMotion : MonoBehaviour {
 		pos.y = Mathf.Clamp(pos.y, -boundary, boundary);
 		pos.z = Mathf.Clamp(pos.z, -boundary, boundary);
 		this.transform.position = pos;
-
-	}
-
-	void OnCollisionEnter(Collision collision)
-	{
-		
-		if (collision.gameObject.name == "Terrain") {
-			Rigidbody rb = GetComponent<Rigidbody>();
-			rb.velocity = Vector3.zero;
-			rb.angularVelocity = Vector3.zero;
-		}
 
 	}
 

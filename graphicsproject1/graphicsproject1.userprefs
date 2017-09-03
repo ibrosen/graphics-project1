@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DiamondSquareTerrain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraMotion.cs">
     <Files>
-      <File FileName="Assets/DiamondSquareTerrain.cs" Line="195" Column="62" />
-      <File FileName="Assets/CameraMotion.cs" Line="71" Column="12" />
-      <File FileName="Assets/GouraudShader.shader" Line="95" Column="43" />
+      <File FileName="Assets/WaterLightScript.cs" Line="34" Column="45" />
+      <File FileName="Assets/DiamondSquareTerrain.cs" Line="142" Column="4" />
+      <File FileName="Assets/CameraMotion.cs" Line="75" Column="3" />
+      <File FileName="Assets/GouraudShader.shader" Line="18" Column="52" />
+      <File FileName="Assets/WaterShader.shader" Line="90" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
