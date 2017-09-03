@@ -77,15 +77,15 @@ public class CameraMotion : MonoBehaviour {
 				
 				}
 		
-//				// Move camera yaw right
-//				if (Input.GetAxis("Mouse X") > 0) {
-//					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.up);
-//		
-//				// Move camera yaw left
-//				} else if (Input.GetAxis("Mouse X") < 0) {
-//					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.up);
-//		
-//				}
+				// Move camera yaw right
+				if (Input.GetAxis("Mouse X") > 0) {
+					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.up);
+		
+				// Move camera yaw left
+				} else if (Input.GetAxis("Mouse X") < 0) {
+					this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.up);
+		
+				}
 
 	}
 

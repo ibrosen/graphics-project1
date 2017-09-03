@@ -13,7 +13,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 	Vector3[] mVerts;
 	Color[] mColours;
 	int mVertCount;
-
+	float max, min;
 
 	// Use this for initialization
 	void Start()
@@ -46,7 +46,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		Vector3 centreVert = mVerts[centreVertIndex];
 
 		// Set camera position to slightly above the ground the in centre of the terrain
-		maincamera.transform.localPosition = new Vector3(0.0f, centreVert.y + 10.0f, 0.0f);
+		maincamera.transform.localPosition = new Vector3(0.0f, max, 0.0f);
 
 	}
 
@@ -136,11 +136,52 @@ public class DiamondSquareTerrain : MonoBehaviour
 				mColours[i] = Color.white;
 		}
 
+		// CREATE COLOURS
+
+		// Find max and min height of the terrain
+		max = mVerts[0].y;
+		min = mVerts[0].y;
+
+		foreach (Vector3 v in mVerts)
+		{
+			if (v.y < min)
+				min = v.y;
+			
+			if (v.y > max)
+				max = v.y;
+		}
+
+		float hRange = max - min;
+
+
+		float snow = max - 0.2f * hRange;
+//		float brown = max - 0.5f * hRange;
+		float green = max - 0.6f * hRange;
+		float sand = max - 0.1f * hRange;
+		float water;
+
+
+		//setting the colours of the vertices;
+		for(int i = 0; i < mVertCount; i++)
+		{
+			//based on the height of the vertex, give it a certain colour
+			if (mVerts[i].y >= snow)
+				mColours[i] = Color.white;
+//			else if (mVerts[i].y >= brown)
+//				mColours[i] = Color.gray;
+			else if (mVerts[i].y >= green)
+				mColours[i] = Color.green;
+			else if (mVerts[i].y >= sand)
+				mColours[i] = Color.yellow;
+			else
+				mColours[i] = Color.blue;
+		}
+
 
 		mesh.vertices = mVerts;
 		mesh.uv = UVs;
 		mesh.triangles = tris;
-		//mesh.colors = mColours;
+		mesh.colors = mColours;
 
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
