@@ -24,7 +24,7 @@
 
 //UNITY_SHADER_NO_UPGRADE
 
-Shader "Unlit/GouraudShader"
+Shader "WaterShader"
 {
 	Properties
 	{
@@ -86,8 +86,15 @@ Shader "Unlit/GouraudShader"
 		float LdotN = dot(L, worldNormal.xyz);
 		float3 dif = fAtt * _PointLightColor.rgb * Kd * v.color.rgb * saturate(LdotN);
 
+		// Calculate specular reflections
+		float Ks = 0.5;
+		float specN = 20; // Values>>1 give tighter highlights
+		float3 V = normalize(_WorldSpaceCameraPos - worldVertex.xyz);
+		float3 R = 2 * dot(L, v.normal) * v.normal - L;
+		float3 spe = fAtt * _PointLightColor.rgb * Ks * pow(saturate(dot(V, R)), specN);
+
 		// Combine Phong illumination model components
-		o.color.rgb = amb.rgb + dif.rgb;
+		o.color.rgb = amb.rgb + dif.rgb + spe.rgb;
 		o.color.a = v.color.a;
 
 		// Transform vertex in world coordinates to camera coordinates
@@ -101,8 +108,8 @@ Shader "Unlit/GouraudShader"
 	fixed4 frag(vertOut v) : SV_Target
 	{
 		fixed4 col = tex2D(_MainTex, v.uv);
-		return col;
-//		return v.color;
+//		return col;
+		return v.color;
 	}
 		ENDCG
 	}

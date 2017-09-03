@@ -24,7 +24,7 @@
 
 //UNITY_SHADER_NO_UPGRADE
 
-Shader "Unlit/GouraudShader"
+Shader "GouraudShader"
 {
 	Properties
 	{

@@ -41,12 +41,8 @@ public class DiamondSquareTerrain : MonoBehaviour
 	public void SetCameraPosition()
 	{
 
-//		// Get the centre vector of the terrain (0, y, 0)
-//		int centreVertIndex = mVertCount / 2;
-//		Vector3 centreVert = mVerts[centreVertIndex];
-
 		// Set camera position to slightly above the ground the in centre of the terrain
-		GameObject.Find("Camera").transform.localPosition = new Vector3(0.0f, max, 0.0f);
+		GameObject.Find("Camera").transform.localPosition = new Vector3(-mSize/2.0f, max, -mSize/2.0f);
 
 	}
 
@@ -149,28 +145,36 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 		// Initalise terrain type percentages (relative to height)
 
-		float snow = max - 0.2f * heightRange;
+		float snow = max - 0.15f * heightRange;
+		float dirt = max - 0.3f * heightRange;
+		float forest = max - 0.4f * heightRange;
 		float green = max - 0.5f * heightRange;
 		float sand = max - 0.6f * heightRange;
-
+		Color forestGreen = new Color(0.0f / 255, 92.0f / 255, 9.0f / 255);
+		Color lightGreen = new Color(1.0f/255, 166.0f/255, 17.0f/255);
+		Color sandYellow = new Color(0.761f, 0.698f, 0.502f, 1);
+		Color waterBlue = new Color(64.0f/255, 164.0f/255, 223.0f/255);
 
 		//setting the colours of the vertices;
-		for(int i = 0; i < mVertCount; i++)
+		for (int i = 0; i < mVertCount; i++)
 		{
+
 			//based on the height of the vertex, give it a certain colour
 			if (mVerts[i].y >= snow)
 				mColours[i] = Color.white;
 			
-			else if (mVerts[i].y >= green)
-				mColours[i] = Color.green;
-			
-			else if (mVerts[i].y >= sand)
-				mColours[i] = Color.yellow;
-			
-			else
-				mColours[i] = Color.blue;
-		}
+			else if (mVerts[i].y >= dirt)
+				mColours[i] = new Color(90.0f / 255, 77.0f / 255, 65.0f / 255);
 
+			else if (mVerts[i].y >= green)
+				mColours[i] = Color.Lerp(forestGreen,lightGreen, (forest-mVerts[i].y)/(forest-green));
+
+			else if (mVerts[i].y >= sand)
+				mColours[i] = sandYellow;
+
+			else
+				mColours[i] = waterBlue;
+		}
 
 		mesh.vertices = mVerts;
 		mesh.uv = UVs;
