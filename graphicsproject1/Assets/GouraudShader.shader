@@ -30,18 +30,20 @@ Shader "Unlit/GouraudShader"
 	{
 		_PointLightColor("Point Light Color", Color) = (0, 0, 0)
 		_PointLightPosition("Point Light Position", Vector) = (0.0, 0.0, 0.0)
+		_MainTex ("Texture", 2D) = "white" {}
+
 	}
 		SubShader
 	{
 		Pass
 	{
-		CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
+	CGPROGRAM
+	#pragma vertex vert
+	#pragma fragment frag
 
-#include "UnityCG.cginc"
+	#include "UnityCG.cginc"
 
-		uniform float3 _PointLightColor;
+	uniform float3 _PointLightColor;
 	uniform float3 _PointLightPosition;
 
 	struct vertIn
@@ -80,13 +82,6 @@ Shader "Unlit/GouraudShader"
 		float3 L = normalize(_PointLightPosition - worldVertex.xyz);
 		float LdotN = dot(L, worldNormal.xyz);
 		float3 dif = fAtt * _PointLightColor.rgb * Kd * v.color.rgb * saturate(LdotN);
-
-//		// Calculate specular reflections
-//		float Ks = 1;
-//		float specN = 5; // Values>>1 give tighter highlights
-//		float3 V = normalize(_WorldSpaceCameraPos - worldVertex.xyz);
-//		float3 R = 2 * dot(L, v.normal) * v.normal - L;
-//		float3 spe = fAtt * _PointLightColor.rgb * Ks * pow(saturate(dot(V, R)), specN);
 
 		// Combine Phong illumination model components
 		o.color.rgb = amb.rgb + dif.rgb;

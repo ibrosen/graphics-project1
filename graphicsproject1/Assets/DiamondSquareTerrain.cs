@@ -70,6 +70,9 @@ public class DiamondSquareTerrain : MonoBehaviour
 		Mesh mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
 
+		MeshCollider collide = new MeshCollider();
+		collide = GetComponent<MeshCollider>();
+
 		int triOffset = 0;
 
 		for (int i = 0; i <= mDivisions; i++)
@@ -126,15 +129,6 @@ public class DiamondSquareTerrain : MonoBehaviour
 			//can play around with this
 			mHeight *= iterRate;
 		}
-		//setting the colours of the vertices;
-		for(int i = 0; i < mVertCount; i++)
-		{
-			//based on the height of the vertex, give it a certain colour
-			if (mVerts[i].y > 0)
-				mColours[i] = Color.black;
-			else
-				mColours[i] = Color.white;
-		}
 
 		// CREATE COLOURS
 
@@ -183,11 +177,13 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mesh.triangles = tris;
 		mesh.colors = mColours;
 
+		collide.sharedMesh = mesh;
+
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 
 		// Create ocean layer
-		GameObject.Find("Ocean").transform.localPosition = new Vector3(0.0f, sand, 0.0f);
+		GameObject.Find("Plane").transform.localPosition = new Vector3(0.0f, sand, 0.0f);
 
 	}
 

@@ -91,9 +91,10 @@ public class CameraMotion : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log ("ayy");
 		if (collision.gameObject.name == "Terrain") {
-			this.transform.localPosition = Vector3.zero;
+			Rigidbody rb = GetComponent<Rigidbody>();
+			rb.velocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero;
 		}
 	}
 

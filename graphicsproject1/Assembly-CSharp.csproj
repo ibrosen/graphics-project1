@@ -56,6 +56,8 @@
      <Compile Include="Assets\MeshGenerator.cs" />
      <Compile Include="Assets\PointLight.cs" />
      <Compile Include="Assets\SunMove.cs" />
+     <Compile Include="Assets\WaterLightScript.cs" />
+     <None Include="Assets\WaterShader.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\GouraudShader.shader" />
  <Reference Include="UnityEngine.Analytics">
