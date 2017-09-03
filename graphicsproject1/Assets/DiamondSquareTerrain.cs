@@ -183,7 +183,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		mesh.RecalculateNormals();
 
 		// Create ocean layer
-		GameObject.Find("Plane").transform.localPosition = new Vector3(0.0f, sand, 0.0f);
+		GameObject.Find("Water").transform.localPosition = new Vector3(0.0f, sand, 0.0f);
 
 	}
 

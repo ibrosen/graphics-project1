@@ -30,6 +30,8 @@ Shader "Unlit/GouraudShader"
 	{
 		_PointLightColor("Point Light Color", Color) = (0, 0, 0)
 		_PointLightPosition("Point Light Position", Vector) = (0.0, 0.0, 0.0)
+		_MainTex ("Texture", 2D) = "white" {}
+
 	}
 		SubShader
 	{
@@ -43,18 +45,21 @@ Shader "Unlit/GouraudShader"
 
 	uniform float3 _PointLightColor;
 	uniform float3 _PointLightPosition;
+	uniform sampler2D _MainTex;	
 
 	struct vertIn
 	{
 		float4 vertex : POSITION;
 		float4 normal : NORMAL;
 		float4 color : COLOR;
+		float2 uv : TEXCOORD0;
 	};
 
 	struct vertOut
 	{
 		float4 vertex : SV_POSITION;
 		float4 color : COLOR;
+		float2 uv : TEXCOORD0;
 	};
 
 	// Implementation of the vertex shader
@@ -87,6 +92,7 @@ Shader "Unlit/GouraudShader"
 
 		// Transform vertex in world coordinates to camera coordinates
 		o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.uv = v.uv;
 
 		return o;
 	}
@@ -94,7 +100,9 @@ Shader "Unlit/GouraudShader"
 	// Implementation of the fragment shader
 	fixed4 frag(vertOut v) : SV_Target
 	{
-		return v.color;
+		fixed4 col = tex2D(_MainTex, v.uv);
+		return col;
+//		return v.color;
 	}
 		ENDCG
 	}
