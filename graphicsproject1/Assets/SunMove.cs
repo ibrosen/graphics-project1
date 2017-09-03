@@ -4,12 +4,12 @@ using System.Collections;
 public class SunMove : MonoBehaviour
 {
 
-    public float radius = 100000;
-    public float speed = 1;
+    public float radius = 1000;
+    public float speed = 10;
     // Update is called once per frame
     void Start()
     {
-        this.transform.localScale = new Vector3(1000, 1000, 1000);
+        this.transform.localScale = new Vector3(100, 100, 100);
     }
     void Update()
     {

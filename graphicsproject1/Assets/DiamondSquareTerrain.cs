@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DiamondSquareTerrain : MonoBehaviour
 {
-
-	public int mDivisions;		// Must be powers of 2. Default & max is 128.
-	public float mSize;			// 100 to 10,000. Default is 10,000.
-	public float iterRate;		// Between 0 and 1. Default is 0.5.
+	public GameObject camera;
+	public int mDivisions;				// Must be powers of 2. Default & max is 128.
+	public static float mSize=1000;					// 100 to 10,000. Default is 10,000.
+	public float iterRate;				// Between 0 and 1. Default is 0.5.
 	public PointLight pointLight;       //Light source, here will mimick the sun
+	public static float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
 
 	Vector3[] mVerts;
 	Color[] mColours;
@@ -17,11 +18,10 @@ public class DiamondSquareTerrain : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
-		//GenerateTest();
-		//MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
-		//renderer.material.shader = Shader.Find("Custom/BasicShader");
+		
 		GenerateTerrain();
+
+		SetCameraPosition();
 
 	}
 
@@ -36,62 +36,24 @@ public class DiamondSquareTerrain : MonoBehaviour
 		renderer.material.SetVector("_PointLightPosition", this.pointLight.GetWorldPosition());
 	}
 
-	void GenerateTest()
+	public void SetCameraPosition()
 	{
-
-		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
-
-		mVertCount = (mDivisions + 1) * (mDivisions + 1);
-		mVerts = new Vector3[mVertCount];
-		Vector2[] uv = new Vector2[mVertCount];
-		int[] tris = new int[mDivisions * mDivisions * 6];
-
-		float halfSize = mSize * 0.5f;
-		float divSize = mSize / mDivisions;
-
-		int triOffset = 0;
-		Mesh mesh = new Mesh();
-		GetComponent<MeshFilter>().mesh = mesh;
-		for (int i = 0; i <= mDivisions; i++)
-		{
-			for (int j = 0; j <= mDivisions; j++)
-			{
-				mVerts[i * (mDivisions + 1) + j] = new Vector3(-halfSize + (j * divSize), 0.0f, halfSize - (i * divSize));
-				uv[i * (mDivisions + 1) + j] = new Vector2((float)(i / mDivisions), (float)(j / mDivisions));
-
-				if (i < mDivisions && j < mDivisions)
-				{
-					int topLeft = i * (mDivisions + 1) + j;
-					int botLeft = (i + 1) * (mDivisions + 1) + j;
-
-					tris[triOffset] = topLeft;
-					tris[triOffset + 1] = topLeft + 1;
-					tris[triOffset + 2] = botLeft + 1;
-
-					tris[triOffset + 3] = topLeft;
-					tris[triOffset + 4] = botLeft + 1;
-					tris[triOffset + 5] = botLeft;
-
-					triOffset += 6;
-
-				}
-
-			}
+		
+		// Find highest point in terrain
+		float peak = 0.0f;
+		foreach (Vector3 vector3 in mVerts) {
+			if (vector3.y > peak)
+				peak = vector3.y;
 		}
 
-		mesh.vertices = mVerts;
-		mesh.uv = uv;
-		mesh.triangles = tris;
+		camera.transform.localPosition = new Vector3(0.0f, peak, 0.0f);
 
-		mesh.RecalculateBounds();
-		mesh.RecalculateNormals();
+		Debug.Log(peak);
+
 	}
 
-
-	void GenerateTerrain()
+	public void GenerateTerrain()
 	{
-
-		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
 
 		//CHANGE MVERTS TO BE 2D ARRAY
 		mVertCount = (mDivisions + 1) * (mDivisions + 1);
@@ -161,7 +123,6 @@ public class DiamondSquareTerrain : MonoBehaviour
 			numSquares *= 2;
 			squareSize /= 2;
 			//can play around with this
-			//mHeight *= iterRate;
 			mHeight *= iterRate;
 		}
 		//setting the colours of the vertices;
