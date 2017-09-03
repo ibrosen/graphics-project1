@@ -81,16 +81,15 @@ Shader "Unlit/GouraudShader"
 		float LdotN = dot(L, worldNormal.xyz);
 		float3 dif = fAtt * _PointLightColor.rgb * Kd * v.color.rgb * saturate(LdotN);
 
-		// Calculate specular reflections
-		float Ks = 1;
-		float specN = 5; // Values>>1 give tighter highlights
-		float3 V = normalize(_WorldSpaceCameraPos - worldVertex.xyz);
-		//float3 R = float3(0.0, 0.0, 0.0);
-		float3 R = 2 * dot(L, v.normal) * v.normal - L;
-		float3 spe = fAtt * _PointLightColor.rgb * Ks * pow(saturate(dot(V, R)), specN);
+//		// Calculate specular reflections
+//		float Ks = 1;
+//		float specN = 5; // Values>>1 give tighter highlights
+//		float3 V = normalize(_WorldSpaceCameraPos - worldVertex.xyz);
+//		float3 R = 2 * dot(L, v.normal) * v.normal - L;
+//		float3 spe = fAtt * _PointLightColor.rgb * Ks * pow(saturate(dot(V, R)), specN);
 
 		// Combine Phong illumination model components
-		o.color.rgb = amb.rgb + dif.rgb + spe.rgb;
+		o.color.rgb = amb.rgb + dif.rgb;
 		o.color.a = v.color.a;
 
 		// Transform vertex in world coordinates to camera coordinates

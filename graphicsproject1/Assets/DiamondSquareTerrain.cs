@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DiamondSquareTerrain : MonoBehaviour
 {
-	public GameObject maincamera;
+	
 	public int mDivisions;				// Must be powers of 2. Default & max is 128.
 	public float mSize;					// 100 to 10,000. Default is 1,000.
 	public float iterRate;				// Between 0 and 1. Default is 0.5.
@@ -41,12 +41,12 @@ public class DiamondSquareTerrain : MonoBehaviour
 	public void SetCameraPosition()
 	{
 
-		// Get the centre vector of the terrain (0, y, 0)
-		int centreVertIndex = mVertCount / 2;
-		Vector3 centreVert = mVerts[centreVertIndex];
+//		// Get the centre vector of the terrain (0, y, 0)
+//		int centreVertIndex = mVertCount / 2;
+//		Vector3 centreVert = mVerts[centreVertIndex];
 
 		// Set camera position to slightly above the ground the in centre of the terrain
-		maincamera.transform.localPosition = new Vector3(0.0f, max, 0.0f);
+		GameObject.Find("Camera").transform.localPosition = new Vector3(0.0f, max, 0.0f);
 
 	}
 
@@ -151,14 +151,13 @@ public class DiamondSquareTerrain : MonoBehaviour
 				max = v.y;
 		}
 
-		float hRange = max - min;
+		float heightRange = max - min;
 
+		// Initalise terrain type percentages (relative to height)
 
-		float snow = max - 0.2f * hRange;
-//		float brown = max - 0.5f * hRange;
-		float green = max - 0.6f * hRange;
-		float sand = max - 0.1f * hRange;
-		float water;
+		float snow = max - 0.2f * heightRange;
+		float green = max - 0.5f * heightRange;
+		float sand = max - 0.6f * heightRange;
 
 
 		//setting the colours of the vertices;
@@ -167,12 +166,13 @@ public class DiamondSquareTerrain : MonoBehaviour
 			//based on the height of the vertex, give it a certain colour
 			if (mVerts[i].y >= snow)
 				mColours[i] = Color.white;
-//			else if (mVerts[i].y >= brown)
-//				mColours[i] = Color.gray;
+			
 			else if (mVerts[i].y >= green)
 				mColours[i] = Color.green;
+			
 			else if (mVerts[i].y >= sand)
 				mColours[i] = Color.yellow;
+			
 			else
 				mColours[i] = Color.blue;
 		}
@@ -185,6 +185,10 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
+
+		// Create ocean layer
+		GameObject.Find("Ocean").transform.localPosition = new Vector3(0.0f, sand, 0.0f);
+
 	}
 
 
