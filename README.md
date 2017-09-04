@@ -26,7 +26,7 @@ A project that satisfies all of the criteria listed below will receive 10 marks.
     * The ’q’ and ’e’ keys should control the roll of the camera
 - [x] You must allow the user to move anywhere in the world (including up into the sky), and prohibit the user from moving “underground” or outside the bounds of the landscape.
 - [x] The camera must not become ‘stuck’ upon nearing or impacting the terrain, i.e. reversing and continuing to move must always be possible.
-- [ ] You must utilise perspective projection, and choose a suitable default perspective, so that the landscape is clearly visible from the start.
+- [x] You must utilise perspective projection, and choose a suitable default perspective, so that the landscape is clearly visible from the start.
 
 ### Surface properties (4 marks):
 -  [x] The colour of the terrain must correspond in a sensible way with the height of the terrain at any particular point (for example rocky outcrops or snow on top of mountains and grass or soil in valleys).
@@ -34,7 +34,7 @@ A project that satisfies all of the criteria listed below will receive 10 marks.
 -  [x] The direction of the lighting must change with time, to simulate the effect of a sun rising
 and setting.
 - [x] The sun itself must also be drawn, in order to help verify the correctness of your lighting implementation. You may use any simple geometric shape such as a pyramid, cube or sphere to represent the sun.
-- [ ] A constant and reasonable frame refresh rate must be maintained during program execution (i.e., 30 frames per second or more)
+- [x] A constant and reasonable frame refresh rate must be maintained during program execution (i.e., 30 frames per second or more)
 
 ## Electronic submission
 Your submission must open and run in the environment installed in the tutorial rooms. Because of this, it is probably safest not to upgrade or modify the Unity installation provided, just in case there is some sort of resultant incompatibility.
