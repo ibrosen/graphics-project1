@@ -70,8 +70,13 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 		MeshCollider collide = new MeshCollider();
 		collide = GetComponent<MeshCollider>();
-
+		
+		//initialises how far into the triangle array we are
 		int offset = 0;
+		//iterates through the list of vertices, using two for loops to treat it
+        	//as a 2D plane, even though it's a 1D array, initialising all the vertices with their
+        	//x and z positions and setting y to 0 as it will be overwritten by later
+       		//diamond square steps
 
 		for (int i = 0; i <= numDiv; i++)
 		{
