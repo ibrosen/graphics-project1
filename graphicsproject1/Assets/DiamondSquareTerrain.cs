@@ -50,19 +50,21 @@ public class DiamondSquareTerrain : MonoBehaviour
 	public void GenerateTerrain()
 	{
 
-		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
+		float mHeight = mSize / 4.0f;	// Sets the height of the mesh. Proportional to mesh size.
 
 		
-		vertexCount = (numDiv + 1) * (numDiv + 1);
+		vertexCount = (numDiv + 1) * (numDiv + 1);			// Sets the number of vertices relative to the number of divisions set
 		vertices = new Vector3[vertexCount];
 		colours = new Color[vertexCount];
 		Vector2[] UVs = new Vector2[vertexCount];
-		//mdiv*mdiv is the number of faces, 2 triangles to a face, 3 ints for a triangle
-		int[] tris = new int[2 * numDiv * numDiv * 3];
+		int[] tris = new int[2 * numDiv * numDiv * 3];		// numDiv * numDiv is the number of faces, 2 triangles to a face, 3 ints for a triangle
 
 		float halfSize = mSize * 0.5f;
 		float divSize = mSize / numDiv;
 
+
+		// Get mesh filter and mesh collider
+		
 		Mesh mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
 
@@ -83,10 +85,12 @@ public class DiamondSquareTerrain : MonoBehaviour
 					int topLeft = i * (numDiv + 1) + j;
 					int botLeft = (i + 1) * (numDiv + 1) + j;
 
+					// Triangle 1
 					tris[offset] = topLeft;
 					tris[offset + 1] = topLeft + 1;
 					tris[offset + 2] = botLeft + 1;
 
+					// Triangle 2
 					tris[offset + 3] = topLeft;
 					tris[offset + 4] = botLeft + 1;
 					tris[offset + 5] = botLeft;
@@ -103,7 +107,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 		vertices[vertices.Length - 1 - numDiv].y = Random.Range(-mHeight, mHeight);
 
 
-
+		// Iterates through vertices, setting their heights using the diamond square algorithm
 		int iterations = (int)Mathf.Log(numDiv, 2);
 		int numSquares = 1;
 		int squareSize = numDiv;
@@ -194,6 +198,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 	void DiamondSquare(int row, int col, int size, float offset)
 	{
+
 		int halfSize = (int)(size * 0.5f);
 		int topLeft = row * (numDiv + 1) + col;
 		int botLeft = (row + size) * (numDiv + 1) + col;
@@ -201,10 +206,12 @@ public class DiamondSquareTerrain : MonoBehaviour
 		int midpoint = (int)(row + halfSize) * (numDiv+1) + (int)(col + halfSize);
 		vertices[midpoint].y = (vertices[topLeft].y + vertices[botLeft].y + vertices[topLeft + size].y + vertices[botLeft + size].y)/4 + Random.Range(-offset, offset);
 
+		// Define heights of diamond or square midpoint as mean height of its vertices, plus a random number within the specified range
 		vertices[topLeft + halfSize].y = (vertices[topLeft].y + vertices[topLeft + size].y + vertices[midpoint].y) / 3 + Random.Range(-offset, offset);
 		vertices[midpoint - halfSize].y = (vertices[topLeft].y + vertices[botLeft].y + vertices[midpoint].y) / 3 + Random.Range(-offset, offset);
 		vertices[midpoint + halfSize].y = (vertices[topLeft + size].y + vertices[botLeft + size].y + vertices[midpoint].y) / 3 + Random.Range(-offset, offset);
 		vertices[botLeft + halfSize].y = (vertices[botLeft].y + vertices[botLeft + size].y + vertices[midpoint].y) / 3 + Random.Range(-offset, offset);
+
 	}
 
 }

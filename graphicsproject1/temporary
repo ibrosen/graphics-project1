@@ -1,2 +1,0 @@
-Color forestGreen = new Color(0.0f / 255, 92.0f / 255, 9.0f / 255);
-        Color lightGreen = new Color(1.0f/255, 166.0f/255, 17.0f/255);
