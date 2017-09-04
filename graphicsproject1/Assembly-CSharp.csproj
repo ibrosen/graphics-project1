@@ -56,9 +56,9 @@
      <Compile Include="Assets\MeshGenerator.cs" />
      <Compile Include="Assets\PointLight.cs" />
      <Compile Include="Assets\SunMove.cs" />
-     <Compile Include="Assets\WaterLightScript.cs" />
-     <None Include="Assets\WaterShader.shader" />
-     <None Include="Assets\GouraudShader.shader" />
+     <Compile Include="Assets\WaterColouring.cs" />
+     <None Include="Assets\WaterGouraudShader.shader" />
+     <None Include="Assets\TerrainGouraudShader.shader" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

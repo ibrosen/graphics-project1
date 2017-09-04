@@ -75,6 +75,7 @@ public class CameraMotion : MonoBehaviour {
 
 	void RestrictToBoundaries() {
 
+		// Get boundary of generated Terrain
 		Vector3 pos;
 		DiamondSquareTerrain terrain = GameObject.Find("Terrain").GetComponent<DiamondSquareTerrain>();
 		float boundary = terrain.mSize / 2.0f;
