@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraMotion : MonoBehaviour {
 	
-	public float moveSpeed; // Set to 10
-	public float rollSpeed; // Set to 50
+	public float moveSpeed = 1000; // Default is 1,000
+	public float rollSpeed = 100; // Default is 100
 
 
 	// Update is called once per frame
@@ -35,33 +35,33 @@ public class CameraMotion : MonoBehaviour {
 		
 		// Roll camera clockwise
 		} else if (Input.GetKey(KeyCode.E)) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.forward);
+			this.transform.RotateAround(transform.position, transform.forward, -1 * Time.deltaTime * rollSpeed);
 
 		// Roll camera anticlockwise
 		} else if (Input.GetKey(KeyCode.Q)) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.forward);
+			this.transform.RotateAround(transform.position, transform.forward, Time.deltaTime * rollSpeed);
 
 		}
 
-		 // MOUSE MOVEMENTS (pitch, yaw)
+		// MOUSE MOVEMENTS (pitch, yaw)
 
 		// Move camera pitch up
 		if (Input.GetAxis("Mouse Y") > 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.right);
+			this.transform.RotateAround(transform.position, transform.right, -1 * Time.deltaTime * rollSpeed);
 
 		// Move camera pitch down
 		} else if (Input.GetAxis("Mouse Y") < 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.right);
+			this.transform.RotateAround(transform.position, transform.right, Time.deltaTime * rollSpeed);
 		
 		}
 
 		// Move camera yaw right
 		if (Input.GetAxis("Mouse X") > 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, this.transform.up);
+			this.transform.RotateAround(transform.position, transform.up, Time.deltaTime * rollSpeed);
 
 		// Move camera yaw left
 		} else if (Input.GetAxis("Mouse X") < 0) {
-			this.transform.localRotation *= Quaternion.AngleAxis(Time.deltaTime * rollSpeed, -1 * this.transform.up);
+			this.transform.RotateAround(transform.position, transform.up, -1 * Time.deltaTime * rollSpeed);
 
 		}
 	
