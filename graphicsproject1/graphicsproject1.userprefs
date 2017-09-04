@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraMotion.cs">
     <Files>
-      <File FileName="Assets/DiamondSquareTerrain.cs" Line="9" Column="29" />
-      <File FileName="Assets/WaterLightScript.cs" Line="34" Column="45" />
-      <File FileName="Assets/CameraMotion.cs" Line="50" Column="47" />
-      <File FileName="Assets/GouraudShader.shader" Line="18" Column="52" />
-      <File FileName="Assets/WaterShader.shader" Line="90" Column="17" />
+      <File FileName="Assets/DiamondSquareTerrain.cs" Line="1" Column="1" />
+      <File FileName="Assets/CameraMotion.cs" Line="74" Column="2" />
+      <File FileName="Assets/WaterColouring.cs" Line="15" Column="26" />
+      <File FileName="Assets/SunMove.cs" Line="15" Column="3" />
+      <File FileName="Assets/MeshGenerator.cs" Line="25" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

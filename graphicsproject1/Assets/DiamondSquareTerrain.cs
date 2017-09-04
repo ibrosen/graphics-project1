@@ -52,7 +52,7 @@ public class DiamondSquareTerrain : MonoBehaviour
 
 		float mHeight = mSize / 4.0f; // Sets the height of the mesh. Proportional to mesh size.
 
-		//CHANGE vertices TO BE 2D ARRAY
+		
 		vertexCount = (numDiv + 1) * (numDiv + 1);
 		vertices = new Vector3[vertexCount];
 		colours = new Color[vertexCount];
